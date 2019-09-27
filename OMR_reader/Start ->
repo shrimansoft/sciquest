@@ -1,0 +1,6 @@
+for file in ../input_file/*; do
+    echo $file
+    python main_program_9_class_4C.py --input $file
+
+done
+
