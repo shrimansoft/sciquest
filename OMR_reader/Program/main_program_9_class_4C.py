@@ -279,16 +279,16 @@ def main():
 
 
     # reading image 
-    Original_image= cv.imread(args.input,0)
+    originalImage= cv.imread(args.input,0)
     #cv.imshow("imput image",im_org)
     #cv.waitKey()
 
     scale_percent = 40 # percent of original size
-    width = int(Original_image.shape[1] * scale_percent / 100)
-    height = int(Original_image.shape[0] * scale_percent / 100)
+    width = int(originalImage.shape[1] * scale_percent / 100)
+    height = int(originalImage.shape[0] * scale_percent / 100)
     dim = (width, height)
 	# resize image
-    im_org = cv.resize(Original_image, dim, interpolation = cv.INTER_AREA)
+    im_org = cv.resize(originalImage, dim, interpolation = cv.INTER_AREA)
 
     
     blurred = cv.GaussianBlur(im_org,(11,11),10)
