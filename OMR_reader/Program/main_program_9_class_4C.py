@@ -264,6 +264,7 @@ def recognize(img_transf,cuter,a,b,n,typ,orientation='h'):
 
 def main():
 
+    #--------------------- taking file name form argument ---------------------------------------
     parser= argparse.ArgumentParser()
 
     parser.add_argument(
@@ -272,25 +273,22 @@ def main():
         required=True,
         type=str)
 
-
     args = parser.parse_args()
     print(args.input)
 
 
 
-
-    img= cv.imread(args.input,0)
-
+    # reading image 
+    Original_image= cv.imread(args.input,0)
     #cv.imshow("imput image",im_org)
     #cv.waitKey()
 
-    
     scale_percent = 40 # percent of original size
-    width = int(img.shape[1] * scale_percent / 100)
-    height = int(img.shape[0] * scale_percent / 100)
+    width = int(Original_image.shape[1] * scale_percent / 100)
+    height = int(Original_image.shape[0] * scale_percent / 100)
     dim = (width, height)
 	# resize image
-    im_org = cv.resize(img, dim, interpolation = cv.INTER_AREA)
+    im_org = cv.resize(Original_image, dim, interpolation = cv.INTER_AREA)
 
     
     blurred = cv.GaussianBlur(im_org,(11,11),10)
@@ -322,53 +320,53 @@ def main():
     # for i in outmost:
         # draw_point(i, im_org, radius=5, color=(255, 0, 0))
     
-    transf = perspective_transform(im_org, outmost)
-    cv.imwrite("../output_data/"+args.input[14:],transf,[cv.IMWRITE_PNG_COMPRESSION])
+    cropedImage = perspective_transform(im_org, outmost)
+    cv.imwrite("../output_data/"+args.input[14:],cropedImage,[cv.IMWRITE_PNG_COMPRESSION])
     
     #cv.imshow("transf",transf)
     
     #---loding cutter and taking data of answer-------
     cutter= cv.imread("cutter2/answer_11.png",0)
-    answer=recognize(transf,cutter,1143,100,4,'opt','h')
+    answer=recognize(cropedImage,cutter,1143,100,4,'opt','h')
     
     #---loding cutter and taking data of date 2019-------
     cutter= cv.imread("cutter2/Date(2019).png",0)
-    date=recognize(transf,cutter,1143,100,10,'num','v')
+    date=recognize(cropedImage,cutter,1143,100,10,'num','v')
     
     
     #---loding cutter and taking data of DOB_DD-MM-------
     cutter= cv.imread("cutter2/DOB_DD-MM.png",0)
-    DOB_DD=recognize(transf,cutter,1143,100,10,'num','v')
+    DOB_DD=recognize(cropedImage,cutter,1143,100,10,'num','v')
     
     #---loding cutter and taking data of DOB_year-------
     cutter= cv.imread("cutter2/DOB_year.png",0)
-    DOB_year=recognize(transf,cutter,1143,100,7,'year','v')
+    DOB_year=recognize(cropedImage,cutter,1143,100,7,'year','v')
     
     #---loding cutter and taking data of gender------
     cutter= cv.imread("cutter2/gender.png",0)
-    gander=recognize(transf,cutter,1143,100,3,'gend','v')
+    gander=recognize(cropedImage,cutter,1143,100,3,'gend','v')
     
     #---loding cutter and taking data of mobile_number-------
     cutter= cv.imread("cutter2/mobile_number.png",0)
-    mobile_no=recognize(transf,cutter,1143,100,10,'num','v')
+    mobile_no=recognize(cropedImage,cutter,1143,100,10,'num','v')
     
     
     #---loding cutter and taking data of rollno-aplha-------
     cutter= cv.imread("cutter2/rollno_alph.png",0)
-    roll_alpha=recognize(transf,cutter,1143,100,26,'alph','v')
+    roll_alpha=recognize(cropedImage,cutter,1143,100,26,'alph','v')
     
     #---loding cutter and taking data of rollno_num-------
     cutter= cv.imread("cutter2/rollno_num.png",0)
-    rollno_num=recognize(transf,cutter,1143,100,10,'num','v')
+    rollno_num=recognize(cropedImage,cutter,1143,100,10,'num','v')
     
     #---loding cutter and taking data of STD -------
     cutter= cv.imread("cutter2/std.png",0)
-    std=recognize(transf,cutter,1143,100,4,'std','v')
+    std=recognize(cropedImage,cutter,1143,100,4,'std','v')
     
     
     #---loding cutter and taking data of subject -------
     cutter= cv.imread("cutter2/subject.png",0)
-    subject=recognize(transf,cutter,1143,100,2,'sub','v')
+    subject=recognize(cropedImage,cutter,1143,100,2,'sub','v')
     
     DOB="{}/{}/{}".format(DOB_DD[0]*10+DOB_DD[1],DOB_DD[2]*10+DOB_DD[3],DOB_year[0])
     Date="{}/{}/{}".format(date[0]*10+date[1],date[2]*10+date[3],"2019")
