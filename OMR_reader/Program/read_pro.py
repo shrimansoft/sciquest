@@ -80,9 +80,12 @@ def get_marked_alternative(alternative_patches):
 
     # Simple heuristic
 
-    if sorted_means[0]/sorted_means[1] >0.9:
+    if  means[np.argmin(means)]/means[np.argmax(means)] < 0.9:
+        if sorted_means[0]/sorted_means[1] >0.9:
+            return 55
+        return np.argmin(means)
+    else:
         return None
-    return np.argmin(means)
 
 
 
@@ -161,10 +164,12 @@ def main():
         print("num: ",num)
         orian = cutter[2]
         print("orian: ",orian)
+        print("a : ",cutter[3])
+        print("b : ",cutter[4])
 
 
         answer=recognize(cropedImage,contorus,num,orian)
-        File.write(str([name,answer]))
+        File.write(str([name,answer])+'\n')
     File.close()
 
 
