@@ -1,0 +1,7 @@
+['STD', [3]]
+['ans', [None, None, 1, None, None, 1, None, None, 3, 2, 1, None, None, None, 1, None, None, None, None, 0, 2, 1, 0, 2, 0, 0, 0, None, 0, 3, 0, None, 3, None, 1, 2, 0, None, 1, 0, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 2, 1, 0, 2, 0, 1, 0, 0, 1, 0, None, 2, 2, 1, 0, 0, 3, 3, None, 0]]
+['date', [1, 0, 1, 1, 2, 0, 0, 2]]
+['gender', [1]]
+['ral', [1]]
+['rollandmobils', [0, 2, 1, 1, 0, 3, 4, 9, 4, 3, 9, 0, 6, 2, 0, 5, 1]]
+['subject', [1]]
