@@ -1,2 +1,6 @@
-#OMR_reader/OMR_images/*
-#OMR_reader/ProOutput/*
+/OMR_reader/OMR_images/*
+/OMR_reader/ProOutput/*
+/OMR_reader/Croped/*
+/OMR_reader/ProInput/*
+/OMR_reader/readedData/*
+/sciquest/*
